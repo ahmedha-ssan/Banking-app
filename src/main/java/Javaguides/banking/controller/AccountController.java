@@ -57,4 +57,21 @@ public class AccountController {
         AccountDto accountDto = accountService.withdraw(id, amount);
         return ResponseEntity.ok(accountDto);
     }
+
+    @PutMapping("/{fromAccountId}/transfer/{toAccountId}")
+    public ResponseEntity<AccountDto> transferFunds(@PathVariable long fromAccountId,@PathVariable long toAccountId, @RequestBody Map<String, Double> request) {
+        Double amount = request.get("amount");
+        AccountDto accountDto = accountService.transferMoney(fromAccountId, toAccountId, amount);
+        return ResponseEntity.ok(accountDto);
+    }
+    @GetMapping("/{id}/balance")
+    public ResponseEntity<Double> getAccountBalance(@PathVariable long id) {
+        double balance = accountService.getBalance(id);
+        return ResponseEntity.ok(balance);
+    }
+    @PutMapping("/{id}/update")
+    public ResponseEntity<AccountDto> updateAccountDetails(@PathVariable long id, @RequestBody AccountDto accountDto) {
+        AccountDto updatedAccountDto = accountService.updateAccountDetails(id, accountDto);
+        return ResponseEntity.ok(updatedAccountDto);
+    }
 }

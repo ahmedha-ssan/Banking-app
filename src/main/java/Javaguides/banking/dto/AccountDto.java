@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data //automatically generate getter setter and constructors
 @AllArgsConstructor
-public class AccountDto {
+public class AccountDto {//Account Data Transfer Object
     private Long id;
     private String accountHolderName;
     private double balance;
